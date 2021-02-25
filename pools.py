@@ -1,6 +1,6 @@
 from datetime import datetime
-import person
-import toys
+from person import Swimmer
+from toys import Toys
 
 current_time = datetime.now().hour
 
@@ -14,10 +14,12 @@ class Pool:
         self.name = pool_name
         self.max_capacity = max_capacity
         self.current_capacity = 0
+        self.guest_list = []
 
     def take_guest(self, *guests):
         for guest in guests:
             self.current_capacity += 1
+        self.guest_list.append(guests)
         print(f'Current Capacity: {self.current_capacity}')
 
     def remove_guest(self, guest_amount):
@@ -26,6 +28,9 @@ class Pool:
             print(f'{guest_amount} removed.')
         else:
             print(f'Enter guest amount in integers.')
+
+    def pool_party():
+        pass
 
     @classmethod
     def free_swim(cls):
@@ -37,9 +42,19 @@ class Pool:
             print(False)
 
 
-pool_1 = Pool("Thompsons", 200)
-
+# -------------------  Instantiations ---------------------
+pool_1 = Pool("Thompson's", 200)
+# --------------------------------------------------
+anita = Swimmer("Anita", 23, "Yellow")
+bryan = Swimmer("Bryan", 20)
+claudia = Swimmer("Claudia", 20,)
+jose = Swimmer("Jose", 22, "Blue")
+# --------------------------------------------------
+balls = Toys("Pool Balls", 2)
+floties = Toys("Floties", 7)
+# -----------------------------------------------
 Pool.free_swim()
-pool_1.take_guest("Arnold", "Leah", "Jonas")
+pool_1.take_guest(anita, bryan, claudia, jose)
 pool_1.remove_guest(1)
 print(pool_1.current_capacity)
+print(pool_1.guest_list)
