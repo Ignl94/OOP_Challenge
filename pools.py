@@ -10,7 +10,7 @@ class Pool:
     has_jets = True
     pool_open = None
 
-    def __init__(self, pool_name, max_capacity):
+    def __init__(self, pool_name, max_capacity=50):
         self.name = pool_name
         self.max_capacity = max_capacity
         self.current_capacity = 0
@@ -19,18 +19,30 @@ class Pool:
     def take_guest(self, *guests):
         for guest in guests:
             self.current_capacity += 1
-        self.guest_list.append(guests)
+            self.guest_list.append(guest)
         print(f'Current Capacity: {self.current_capacity}')
 
-    def remove_guest(self, guest_amount):
-        if isinstance(guest_amount, int):
-            self.current_capacity -= guest_amount
-            print(f'{guest_amount} removed.')
+    def remove_guest(self, guest):
+        if guest in self.guest_list:
+            self.guest_list.remove(guest)
+            self.current_capacity -= 1
         else:
-            print(f'Enter guest amount in integers.')
+            print("Person not on list.")
 
-    def pool_party():
-        pass
+    def pool_party(self):
+        guest_found = False
+        list_check = input("What is your name? ")
+        for guest in self.guest_list:
+            if guest.name == list_check:
+                guest_found = True
+        if guest_found:
+            print("Welcome to the party!")
+            guest.say_hello()
+            guest.takes_swim()
+            Toys.inflate()
+            floties.toys_squeaking()
+        else:
+            print("Your not on the list.")
 
     @classmethod
     def free_swim(cls):
@@ -45,16 +57,15 @@ class Pool:
 # -------------------  Instantiations ---------------------
 pool_1 = Pool("Thompson's", 200)
 # --------------------------------------------------
-anita = Swimmer("Anita", 23, "Yellow")
-bryan = Swimmer("Bryan", 20)
-claudia = Swimmer("Claudia", 20,)
-jose = Swimmer("Jose", 22, "Blue")
+anita = Swimmer("Anita", 23, "Blue", "Yellow")
+bryan = Swimmer("Bryan", 20, "Orange", "Green")
+claudia = Swimmer("Claudia", 20, "Purple", "Gold")
+jose = Swimmer("Jose", 22, "Blue", "Blue")
 # --------------------------------------------------
 balls = Toys("Pool Balls", 2)
 floties = Toys("Floties", 7)
 # -----------------------------------------------
 Pool.free_swim()
 pool_1.take_guest(anita, bryan, claudia, jose)
-pool_1.remove_guest(1)
-print(pool_1.current_capacity)
 print(pool_1.guest_list)
+pool_1.pool_party()

@@ -5,8 +5,9 @@ class Toys:
         self.name = name
         self.amount = amount
 
-    def inflate(self):
-        print(f'{self.name} inflated.')
+    @classmethod
+    def inflate(cls):
+        print(f'Pool toys are inflated.')
 
     def change_amount(self, new_amount):
         self.amount = new_amount
