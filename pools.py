@@ -35,13 +35,12 @@ class Pool:
         for guest in self.guest_list:
             if guest.name == list_check:
                 guest_found = True
-        if guest_found:
-            print("Welcome to the party!")
-            guest.say_hello()
-            guest.takes_swim()
-            Toys.inflate()
-            floties.toys_squeaking()
-        else:
+                print("Welcome to the party!")
+                guest.say_hello()
+                guest.takes_swim()
+                Toys.inflate()
+                floties.toys_squeaking()
+        if guest_found == False:
             print("Your not on the list.")
 
     @classmethod
